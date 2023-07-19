@@ -154,8 +154,10 @@ func createChannel(c *gin.Context, db *sql.DB) {
 		return
 	}
 
-	// Return ID of newly inserted channel
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	// Set the ID of new channel before returning
+	channel.ID = int(id)
+	// Return the entire channel instance
+	c.JSON(http.StatusOK, channel)
 }
 
 // Channel listing endpoint
