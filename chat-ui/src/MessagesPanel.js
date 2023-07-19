@@ -16,7 +16,9 @@ const MessagesPanel = ({ selectedChannel }) => {
             const data = await response.json();
             if (isMounted) {
                 setMessages(data || []);
-                lastMessageIdRef.current = data.length > 0 ? data[data.length - 1].id : null;
+                if (data){
+                    lastMessageIdRef.current = data.length > 0 ? data[data.length - 1].id : null;
+                }
             }
         };
 
